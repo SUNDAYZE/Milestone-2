@@ -13,15 +13,20 @@ router.post("/register", async (req, res) => {
 if (user) {
     return res.json({message: "User already exists!"});
 }
-
      const hashedPassword = await bcrypt.hash(password, 10)
-
      const newUser = new UserModel({username, password: hashedPassword});
      await newUser.save();
 
     res.json({message: "User Registered Successfully"});
 });
 
-router.post("/login");
+router.post("/login", async (res,req) => {
+    const {username, password} =req.body;
+    const user = await UserModel.findOne({username});
+
+    if (!user){
+        return res.json({ message: "User Does Not Exist!"});
+    }
+});
 
 export { router as userRouter }; 

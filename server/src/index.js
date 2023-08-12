@@ -12,6 +12,8 @@ app.use(cors());
 app.use("/auth", userRouter);
 
 mongoose.connect(
-    "mongodb+srv://milestone2:Assessors1316@recipes.nziaaqn.mongodb.net/" );
+    "mongodb+srv://milestone2:Assessors1316@recipes.nziaaqn.mongodb.net/recipes");
 
 app.listen(3001, () => console.log("SERVER STARTED"));
+
+//mongodb+srv://milestone2:Assessors1316@recipes.nziaaqn.mongodb.net/

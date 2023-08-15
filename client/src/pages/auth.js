@@ -17,15 +17,15 @@ const Login = () => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
 
-    const [_, setCookies] = useCookies(["access_token"]);
+    const [cookies, setCookies] = useCookies(["access_token"]);
 
     const navigate = useNavigate();
 
     
-    const onSubmit = async (event) => {
+    const onSubmitLogin = async (event) => {
         event.preventDefault();
         try{
-            const response = await axios.post("http://localhost:3001/auth/register", {username, password});
+            const response = await axios.post("http://localhost:3001/auth/login", {username, password});
 
              setCookies("access_token", response.data.token)
              window.localStorage.setItem("userID", response.data.userID);
@@ -42,6 +42,7 @@ const Login = () => {
         password={password} 
         setPassword={setPassword} 
         label="Login"
+        onSubmit={onSubmitLogin}
         />
     )
 };
@@ -50,7 +51,7 @@ const Register = () => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
 
-    const onSubmit = async(event) => {
+    const onSubmitRegister = async(event) => {
         event.preventDefault();
         try{
             await axios.post("http://localhost:3001/auth/register", {username, password});
@@ -67,7 +68,7 @@ const Register = () => {
     password={password} 
     setPassword={setPassword} 
     label="Register"
-    onSubmit={onSubmit}
+    onSubmit={onSubmitRegister}
     />
     );
 

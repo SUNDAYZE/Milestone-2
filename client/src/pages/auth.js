@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import axios from 'axios'
+import {useCookies} from 'react-cookie'
+import {useNavigate} from 'react-router-dom'
 
 export const Auth = () => {
     return (<div className='auth'>
@@ -15,28 +17,45 @@ const Login = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
+    const [_, setCookies] = useCookies(['access_token'])
+    const navigate = useNavigate()
+    const onSubmit = async (event) => {
+        event.preventDefault()
+        try {
 
-    return (<Form username={username} setUsername={setUsername} password={password} setPassword={setPassword} label='Login' />
+            const response = await axios.post(' http://localhost:3001/auth/login', {
+                username,
+                 password
+            })
+            setCookies('access_token',response.data.token)
+            window.localStorage.setItem('userID', response.data.userID)
+            navigate('/')
+
+        } catch (err) {
+            console.error(err)
+        }
+    }
+    return (<Form username={username} setUsername={setUsername} password={password} setPassword={setPassword} label='Login' onSubmit={onSubmit} />
     )
 }
 const Register = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
-const onSubmit = async (event) =>{
-    event.preventDefault()
-    try {
+    const onSubmit = async (event) => {
+        event.preventDefault()
+        try {
 
-await axios.post(' http://localhost:3001/auth/register', {
-    username, password
-})
-alert('Registration complete! Please Login.')
-    } catch (err){
-        console.error(err)
+            await axios.post(' http://localhost:3001/auth/register', {
+                username, password
+            })
+            alert('Registration complete! Please Login.')
+        } catch (err) {
+            console.error(err)
+
+        }
 
     }
-
-}
 
     return (<Form username={username} setUsername={setUsername} password={password} setPassword={setPassword} label='Register' onSubmit={onSubmit} />
     )

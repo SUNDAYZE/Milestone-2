@@ -28,6 +28,7 @@ const Login = () => {
                  password
             })
             setCookies('access_token',response.data.token)
+            console.log(response.data.userID)
             window.localStorage.setItem('userID', response.data.userID)
             navigate('/')
 

@@ -62,7 +62,7 @@ const isRecipeSaved = (id) => savedRecipes.includes(id);
 
     return (
     <div> 
-        <h1>Recipes</h1>
+        <h1 className="recipes">Recipes</h1>
         <ul>
         {recipes.map((recipe) => (
         <li key={recipe._id}>

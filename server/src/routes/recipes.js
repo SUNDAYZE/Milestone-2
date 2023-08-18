@@ -17,11 +17,16 @@ router.get('/', async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
-    const recipe = new RecipeModel(req.body)
+    const{name, ingredients, instructions, imageUrl, cookingTime, userOwner} =req.body
+    const recipe = new RecipeModel({name, ingredients, instructions, imageUrl, cookingTime, userOwner})
+   
     try {
         const response = await recipe.save()
-        res.json(response)
+        res.json(response) 
+        
+    
     } catch (err) {
+        
         res.json(err)
     }
 })

@@ -1,10 +1,79 @@
 .App {
   text-align: center;
-}
 
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+.auth{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f2f2f2;
+  
+ 
+}
+.navbar {
+  margin: 0;
+  width: 100%;
+  height: 50px;
+  background-color: #f2f2f2;
+  
+ 
+}
+
+a {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  margin: 55px;
+  font-size: 25px;
+  
+}
+a:hover {
+  color: rgb(32, 47, 214);
+  text-decoration: none;
+  margin: 55px;
+  font-size: 25px;
+  
+}
+.auth-container{
+  display: flex;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 100px;
+  border-radius: 5px;
+  margin: 100px;
+}
+
+
+
+.create-recipe {
+  display: flex;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  background-color: #f2f2f2;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 55px;
+  border-radius: 20px;
+  margin: 100px;
+ 
+  
+  
+
+}
+.create-recipe form {
+  display: flex;
+  flex-direction: column;
+}
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 @media (prefers-reduced-motion: no-preference) {

@@ -7,11 +7,6 @@ import {useCookies} from 'react-cookie'
 
 
 
-
-
-
-
-
 export const Home = () => {
     const navigate = useNavigate()
     const [recipes, setRecipes] = useState([])

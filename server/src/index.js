@@ -14,6 +14,6 @@ app.use(cors())
 app.use('/auth', userRouter)
 app.use('/recipes', recipesRouter)
 
-mongoose.connect("mongodb+srv://jscf222:MBBLecq0Hlae@recipe.uqprtdw.mongodb.net/recipe")
+mongoose.connect("enter mongo connection here")
 
 app.listen(3001, () => console.log('SERVER STARTED!'))

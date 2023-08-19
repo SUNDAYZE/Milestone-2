@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useGetUserID } from '../hooks/useGetUserID'
 import { useNavigate } from 'react-router-dom'
+import {useCookies} from 'react-cookie'
 
 
 
@@ -15,6 +16,7 @@ export const Home = () => {
     const navigate = useNavigate()
     const [recipes, setRecipes] = useState([])
     const [savedRecipes, setSavedRecipes] = useState([])
+    const [cookies, _] = useCookies(["access_token"])
 const userID = useGetUserID()
 if (!userID){
     navigate('/auth')
@@ -41,7 +43,7 @@ if (!userID){
             }
         }
         fetchRecipe()
-        fetchSavedRecipe()
+        if(cookies.access_token)fetchSavedRecipe();
     }, [])
     const saveRecipe = async (e,recipeID) => {
         e.preventDefault()
@@ -49,7 +51,9 @@ if (!userID){
             const response = await axios.put('http://localhost:3001/recipes',{
                 recipeID, 
                 userID,
-            })
+            },
+            {headers: {authorization: cookies.access_token}}
+            )
            setSavedRecipes(response.data.savedRecipes)
          
           
